@@ -33,3 +33,42 @@ description text,
 created_at timestamp default now()
 );
 
+Create table case document (
+id UUID primary key,
+case_id UUID references case(id)
+file_name varchar(255),
+file_url text,
+uploded_at timestamp default now()
+);
+
+create table CaseSummary(
+id UUID primary key, 
+case_id UUID references case(id),
+summary text
+);
+
+create table ReportArtefcts (
+id UUID primary key, 
+case_summary_id UUID references CaseSummary(id);
+artefact_type varchar(100),
+content text
+);
+
+create table notification (
+id UUID primary key, 
+case_id UUID references case(id),
+message text,
+status varchar(50),
+created_at timestamp default now()
+);
+
+
+
+
+
+
+
+
+
+
+
