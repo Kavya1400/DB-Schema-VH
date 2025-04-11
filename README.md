@@ -21,3 +21,15 @@ email VARCHAR(255) UNIQUE
 Role varchar(50),
 created_at timestamp default now()
 );
+
+# Case and document management 
+
+Create table case(
+id UUID Primary Key,
+user_id UUID references User(id),
+tenant_id UUID references tenant(id),
+title varchar(255),
+description text,
+created_at timestamp default now()
+);
+
