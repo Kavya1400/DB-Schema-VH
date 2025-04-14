@@ -62,6 +62,45 @@ status varchar(50),
 created_at timestamp default now()
 );
 
+# Persona simulation management 
+
+Create table Trait(
+id UUID Primary key,
+name VARCHAR(255),
+description text
+);
+
+create table PersonaPrompt(
+id UUID primary key,
+persona_id UUID references persona(ID),
+prompt_text text
+);
+
+Create table CasePersonaSimulation(
+id UUID Primary key,
+case_persona_id UUID references CasePersona(id),
+llm_version_id UUID,
+response text
+created_at timestamp default now()
+);
+
+# LLM Versioning 
+
+Create Table LLM(
+id UUID Primary Key,
+name VARCHAR(255)
+provider VARCHAR(255)
+);
+
+Create table LLMVersion(
+id UUID Primary Key, 
+llm,_id UUID references LLM(id),
+version_tag VARCHAR(100)
+release_notes text
+);
+
+
+
 
 
 
